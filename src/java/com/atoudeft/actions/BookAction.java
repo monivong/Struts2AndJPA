@@ -34,44 +34,59 @@ public class BookAction extends ActionSupport implements SessionAware {
 	}
 	public String add()
 	{
-		if (livre!=null)
-		{
-			if (livre.getIsbn().trim().equals(""))
-			{
-				this.addFieldError("livre.isbn", "L'ISBN est obligatoire");
-				return SUCCESS;
-			}
-			if (LivreDAO.addBook(livre))
-			{
-				this.addActionMessage("Livre ajoute avec succes.");
-			}
-			else
-			{
-				this.addActionMessage("L'ISBN existe deja.");
-			}
-		}
-		return SUCCESS;
+            if (livre!=null)
+            {
+                if( livre.getAuteur().matches(".*\\d+.*") ) {
+                    this.addFieldError("livre.auteur", "Erreur ! Le nom de l'auteur ne devrait pas contenir de chiffres.");
+                } else {
+                    if (livre.getIsbn().trim().equals(""))
+                    {
+                            this.addFieldError("livre.isbn", "L'ISBN est obligatoire");
+                            return SUCCESS;
+                    }
+                    if (LivreDAO.addBook(livre))
+                    {
+                            this.addActionMessage("Livre ajoute avec succes.");
+                    }
+                    else
+                    {
+                            this.addActionMessage("L'ISBN existe deja.");
+                    }
+                }
+            }
+            return SUCCESS;
 	}
         public String addBookCopy() {
             return SUCCESS;
         }
 	public String comment()
-	{
-		if (unCommentaire != null)
-		{
-			LivreDAO.addComment(livre.getIsbn(), unCommentaire);
-		}
-		livre = LivreDAO.getBook(livre.getIsbn());
-		commentaires = LivreDAO.getComments(livre.getIsbn());
-		return SUCCESS;
+	{                            
+            if (unCommentaire != null)
+            {
+                    LivreDAO.addComment(livre.getIsbn(), unCommentaire);
+            }
+            livre = LivreDAO.getBook(livre.getIsbn());
+            commentaires = LivreDAO.getComments(livre.getIsbn());
+            return SUCCESS;
 	}
 
     
-    public void validate()
-    {
-        if (!session.containsKey("connecte"))
-    		this.addActionError("Vous devez vous connecter pour accéder aux infos sur les livres");
-    }
+        @Override
+        public void validate()
+        {
+            if (!session.containsKey("connecte")) {
+                this.addActionError("Vous devez vous connecter pour accéder aux infos sur les livres");
+            }
+            if(!( (this.uneNote >= 0) && (this.uneNote <= 10) ) ) {
+                this.addFieldError("uneNote", "Erreur ! La note doit être compris entre 0 et 10.");
+                //Source de :  https://struts.apache.org/docs/form-validation.html
+            }
+            /*
+            if( this.livre.getAuteur().matches(".*\\d+.*") ) {
+                this.addFieldError("livre.auteur", "Attention ! Le nom de l'auteur ne doit pas contenir de chiffres.");
+            }
+            */
+        }
 
 	public List<Book> getBookList() {
 		return bookList;

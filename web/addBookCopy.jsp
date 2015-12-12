@@ -18,8 +18,8 @@
                   <s:textfield name="livre.isbn" label="ISBN" required="true" />
                   <s:textfield name="livre.titre" label="Titre" />
                   <s:textfield name="livre.auteur" label="Auteur" />
-                  <s:textfield name="livre.proprietaire" label="proprietaire" />
-                  <s:submit value="Ajouter"/>   	  
+                  <s:textfield name="livre.proprietaire" label="proprietaire" required="true"/>
+                  <s:submit value="Ajouter l'exemplaire"/>   	  
         </s:form>
     </body>
 </html>

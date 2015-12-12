@@ -14,10 +14,10 @@
 Ajoutez un nouveau livre :
 <s:actionmessage/>
 <s:form action="AddBook">
- 	  <s:textfield name="livre.isbn" label="ISBN" required="true" />
- 	  <s:textfield name="livre.titre" label="Titre" />
- 	  <s:textfield name="livre.auteur" label="Auteur" />
-  	  <s:submit value="Ajouter"/>   	  
+    <s:textfield name="livre.isbn" label="ISBN" required="true" />
+    <s:textfield name="livre.titre" label="Titre" />
+    <s:textfield name="livre.auteur" label="Auteur" />
+    <s:submit value="Ajouter"/>   	  
 </s:form>	
 </body>
 </html>
