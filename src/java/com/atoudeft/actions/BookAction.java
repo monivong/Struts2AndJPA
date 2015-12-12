@@ -16,6 +16,7 @@ public class BookAction extends ActionSupport implements SessionAware {
 	private Book livre ;//= new Book();
 	private List<String> commentaires;
 	private String unCommentaire;
+        private int uneNote;
 	  
 	@Override
 	public void setSession(Map<String, Object> s) {
@@ -51,6 +52,9 @@ public class BookAction extends ActionSupport implements SessionAware {
 		}
 		return SUCCESS;
 	}
+        public String addBookCopy() {
+            return SUCCESS;
+        }
 	public String comment()
 	{
 		if (unCommentaire != null)
@@ -100,5 +104,13 @@ public class BookAction extends ActionSupport implements SessionAware {
 	public void setUnCommentaire(String unCommentaire) {
 		this.unCommentaire = unCommentaire;
 	}	
+
+        public int getUneNote() {
+            return uneNote;
+        }
+
+        public void setUneNote(int uneNote) {
+            this.uneNote = uneNote;
+        }
 	
 }

@@ -17,11 +17,12 @@
          <li><s:property /></li>
 	</s:iterator>
 </ul>
-Ajoutez un commentaire :
+Ajouter une évaluation :
 <s:form action="CommentBook">
- 	  <s:textfield name="unCommentaire" label="Commentaire" required="true" />
- 	  <s:hidden name="livre.isbn" />
-  	  <s:submit value="Go"/>   	  
+    <s:textfield name="uneNote" label="Note" required="true" />
+    <s:textfield name="unCommentaire" label="Commentaire" required="true" />          
+    <s:hidden name="livre.isbn" />
+    <s:submit value="Go"/>   	  
 </s:form>	
 </body>
 </html>

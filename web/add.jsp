@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <s:if test="not #session['connecte']">
-<jsp:forward page="login.jsp"></jsp:forward>
+    <jsp:forward page="login.jsp"></jsp:forward>
 </s:if>
 <html>
 <head>

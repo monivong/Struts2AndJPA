@@ -34,6 +34,9 @@
         <action name="AddBook" method="add" class="com.atoudeft.actions.BookAction">
             <result>/add.jsp</result>
         </action>
+        <action name="AddBookCopy" method="addBookCopy" class="com.atoudeft.actions.BookAction">
+            <result>/addBookCopy.jsp</result>
+        </action>
         <action name="CommentBook" method="comment" class="com.atoudeft.actions.BookAction">
             <result>/comments.jsp</result>
         </action>
