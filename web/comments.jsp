@@ -14,7 +14,7 @@
 <h4>Commentaires du livre <s:property value="livre.isbn" />[<s:property value="livre.titre" />] </h4>
 <ul>
 	<s:iterator value="commentaires">
-         <li><s:property /></li>
+            <li><s:property /></li>
 	</s:iterator>
 </ul>
 Ajouter une évaluation :
@@ -23,6 +23,20 @@ Ajouter une évaluation :
     <s:textfield name="unCommentaire" label="Commentaire" required="true" />          
     <s:hidden name="livre.isbn" />
     <s:submit value="Go"/>   	  
-</s:form>	
+</s:form>
+    <hr />
+    <h4>Commentaires du livre <s:property value="monLivre.isbn" />[<s:property value="monLivre.titre" />] </h4>
+    <ul>
+	<s:iterator value="commentaires">
+            <li><s:property /></li>
+	</s:iterator>
+    </ul>
+    Ajouter une évaluation :
+    <s:form action="CommentBook">
+        <s:textfield name="uneNote" label="Note" required="true" />
+        <s:textfield name="unCommentaire" label="Commentaire" required="true" />          
+        <s:hidden name="livre.isbn" />
+        <s:submit value="Go"/>   	  
+    </s:form>
 </body>
 </html>

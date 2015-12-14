@@ -44,12 +44,14 @@ public class Authentification extends ActionSupport implements SessionAware {
                 List<User> uneListeUtilisateurs = requete.getResultList();
                 if( uneListeUtilisateurs.isEmpty() ) {
                     //System.out.println("<h2>la variable unUser est nulle...</h2>");                
+                    this.addFieldError("username", "ERREUR ! Il n'y a aucun utilisateur { " + this.username + " }");
                     return INPUT;
                 } else {
                     ListIterator iterateur = uneListeUtilisateurs.listIterator();
                     while( iterateur.hasNext() ) {
                         User temp = (User)iterateur.next();
                         if(!temp.getPassword().equals(this.password)){
+                            this.addFieldError("password", "ERREUR ! Le mot de passe saisi est incorrect.");
                             return INPUT;
                         } else {
                             session.put("connecte", true);
