@@ -5,7 +5,7 @@
 </s:if>
 <html>
 <head>
-    <title>MyBooKs</title>
+    <title>MyBooKs</title>    
 </head>
 
 <body>
@@ -41,11 +41,11 @@
 	</s:iterator>
     </table>
     Ajouter une évaluation :
-    <s:form action="CommentBook">
+    <s:form action="SubmitEvaluation">
         <s:textfield name="uneNote" label="Note" required="true" />
         <s:textfield name="unCommentaire" label="Commentaire" required="true" />          
-        <s:hidden name="livre.isbn" />
-        <s:submit value="Go"/>   	  
+        <s:hidden name="monLivre.isbn" />
+        <s:submit value="Soumettre évaluation"/>   	  
     </s:form>
 </body>
 </html>

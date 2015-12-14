@@ -46,6 +46,10 @@
             <result name="success">/comments.jsp</result>
             <result name="input">/list.jsp</result>
         </action>
+        <action name="SubmitEvaluation" method="submitEvaluation" class="com.atoudeft.actions.BookAction">
+            <result name="success">/comments.jsp</result>
+            <result name="input">/comment.jsp</result>
+        </action>
     </package>
 
     <include file="connexion.xml"/>

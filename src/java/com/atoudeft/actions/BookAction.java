@@ -107,6 +107,24 @@ public class BookAction extends ActionSupport implements SessionAware {
             return SUCCESS;
         }
         
+        public String submitEvaluation() {
+            
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("Struts2AndJPAPU");
+            EntityManager em = emf.createEntityManager();
+            em.getTransaction().begin();
+            Evaluation temp = new Evaluation();
+            temp.setIdProf( (User)this.session.get("idProf") );
+            temp.setIdLivre(monLivre);
+            temp.setNote( (short)this.uneNote );
+            temp.setCommentaire( this.unCommentaire );
+            System.out.println( temp );
+            em.persist( temp );
+            em.getTransaction().commit();
+            em.close();
+            
+            return SUCCESS;
+        }
+        
         @Override
         public void validate()
         {

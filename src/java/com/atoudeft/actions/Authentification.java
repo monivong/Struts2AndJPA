@@ -55,6 +55,7 @@ public class Authentification extends ActionSupport implements SessionAware {
                             return INPUT;
                         } else {
                             session.put("connecte", true);
+                            session.put("idProf", temp );
                             return SUCCESS;
                         }
                     }
