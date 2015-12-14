@@ -8,7 +8,10 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.atoudeft.dao.LivreDAO;
 import com.atoudeft.entites.Book;
 import com.opensymphony.xwork2.ActionSupport;
+import com.samnangalex.jpa.Evaluation;
 import com.samnangalex.jpa.Livre;
+import com.samnangalex.jpa.User;
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -24,6 +27,9 @@ public class BookAction extends ActionSupport implements SessionAware {
         private int uneNote;
         private List<Livre> maListeDesLivres;    
         private Livre monLivre;    
+        private List<Evaluation> maListeDesCommentaires;
+
+    
 	  
 	@Override
 	public void setSession(Map<String, Object> s) {
@@ -87,6 +93,17 @@ public class BookAction extends ActionSupport implements SessionAware {
 	}
 
         public String addBookEvaluation() {
+            
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("Struts2AndJPAPU");
+            EntityManager em = emf.createEntityManager();
+            Query requete = em.createNamedQuery("Evaluation.findByIdLivre");
+            requete.setParameter("idLivre", this.monLivre );
+            maListeDesCommentaires = requete.getResultList();
+           
+            /*
+            maListeDesCommentaires = new ArrayList<Evaluation>();
+            maListeDesCommentaires.add(new Evaluation(1, new User("adupont"), new Livre("978-1-4302-2889-9"), (short)8, "Très bon livre couvrant une bonne partie de la technologie Java-EE avec une étude assez approfondie de JPA. Le livre couvre aussi le framework JSF ainsi que les services web (SOAP et Restful).Le seul reproche que je peux lui faire est qu'il ne couvre pas les fondements de la programmation web (servlets et JSP)."));
+            */
             return SUCCESS;
         }
         
@@ -148,5 +165,11 @@ public class BookAction extends ActionSupport implements SessionAware {
         }
         public void setMonLivre(Livre monLivre) {
             this.monLivre = monLivre;
+        }
+        public List<Evaluation> getMaListeDesCommentaires() {
+            return maListeDesCommentaires;
+        }
+        public void setMaListeDesCommentaires(List<Evaluation> maListeDesCommentaires) {
+            this.maListeDesCommentaires = maListeDesCommentaires;
         }
 }

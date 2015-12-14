@@ -2,10 +2,10 @@
 -- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Dec 12, 2015 at 03:40 PM
--- Server version: 5.6.20-log
--- PHP Version: 5.4.31
+-- Client :  localhost
+-- Généré le :  Lun 14 Décembre 2015 à 18:26
+-- Version du serveur :  5.6.20-log
+-- Version de PHP :  5.4.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `livres`
+-- Base de données :  `livres`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cours`
+-- Structure de la table `cours`
 --
 
 CREATE TABLE IF NOT EXISTS `cours` (
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `cours` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cours`
+-- Contenu de la table `cours`
 --
 
 INSERT INTO `cours` (`numero`, `nom`, `duree`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `cours` (`numero`, `nom`, `duree`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `evaluation`
+-- Structure de la table `evaluation`
 --
 
 CREATE TABLE IF NOT EXISTS `evaluation` (
@@ -59,11 +59,11 @@ CREATE TABLE IF NOT EXISTS `evaluation` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `evaluation`
+-- Contenu de la table `evaluation`
 --
 
 INSERT INTO `evaluation` (`id`, `idProf`, `idLivre`, `note`, `commentaire`) VALUES
-(1, 'adupont', '978-1-4302-2889-9', 8, 'Très bon livre couvrant une bonne partie de la technologie Java-EE avec une étude assez approfondie de JPA. Le livre couvre aussi le framework JSF ainsi que les services web (SOAP et Restful).\r\nLe seul reproche que je peux lui faire est qu''il ne couvre pas les fondements de la programmation web (servlets et JSP).'),
+(1, 'adupont', '978-1-4302-2889-9', 8, 'Très bon livre couvrant une bonne partie de la technologie Java-EE avec une étude assez approfondie de JPA. Le livre couvre aussi le framework JSF ainsi que les services web (SOAP et Restful).Le seul reproche que je peux lui faire est qu''il ne couvre pas les fondements de la programmation web (servlets et JSP).'),
 (2, 'sduvet', '978-1-4302-2889-9', 7, 'Assez bon livre sur la technologie Java-EE. La couverture de JSF et JPA est appréciée. Par contre, je regrette qu''il ne couvre pas des frameworks très populaires tels que Struts et Hibernate.'),
 (3, 'adupont', '2-89377-250-1', 7, 'Bon et gros livre couvrant beaucoup de sujets relatifs au développement de systèmes d''informations. On s''y perd un peu dans les nombreux sujets quelques fois antagonistes (exemple : approche structurée et approche objet).'),
 (4, 'alapointe', '9781430239307', 7, 'Très bon livre pour découvrir le développement d''applications Android avec Java.');
@@ -71,7 +71,7 @@ INSERT INTO `evaluation` (`id`, `idProf`, `idLivre`, `note`, `commentaire`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `evaluationcours`
+-- Structure de la table `evaluationcours`
 --
 
 CREATE TABLE IF NOT EXISTS `evaluationcours` (
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `evaluationcours` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `evaluationcours`
+-- Contenu de la table `evaluationcours`
 --
 
 INSERT INTO `evaluationcours` (`id`, `idLivre`, `idProf`, `idCours`, `note`, `commentaire`) VALUES
@@ -94,7 +94,7 @@ INSERT INTO `evaluationcours` (`id`, `idLivre`, `idProf`, `idCours`, `note`, `co
 -- --------------------------------------------------------
 
 --
--- Table structure for table `exemplaire`
+-- Structure de la table `exemplaire`
 --
 
 CREATE TABLE IF NOT EXISTS `exemplaire` (
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `exemplaire` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `livre`
+-- Structure de la table `livre`
 --
 
 CREATE TABLE IF NOT EXISTS `livre` (
@@ -120,29 +120,29 @@ CREATE TABLE IF NOT EXISTS `livre` (
   `etat` varchar(15) DEFAULT 'Disponible',
   `Description` text NOT NULL,
   `NbPages` int(11) NOT NULL,
-  `note` double DEFAULT NULL,
+  `note` double NOT NULL DEFAULT '0',
   `nbEvaluations` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Informations sur les livres';
 
 --
--- Dumping data for table `livre`
+-- Contenu de la table `livre`
 --
 
 INSERT INTO `livre` (`ISBN`, `Titre`, `Edition`, `Annee`, `MotsCles`, `NomAuteur`, `etat`, `Description`, `NbPages`, `note`, `nbEvaluations`) VALUES
-('0-201-73733-7', 'Object-Oriented Software Development Using Java', 'Addison Wesley', 2003, 'Développement objet, programmation java, design patterns', 'Jia, Xiaoping', 'Disponible', 'Livre très pédagogique axé sur la conception d''application et l''exploitation des principaux patrons de conception.', 677, NULL, 0),
-('2-7440-1962-3', 'Au coeur de Java 2, vol. 2 Fonctions avancées, JDK', 'CampusPress', 2005, 'Programmation multithread, accès aux bases de données avec JDBC, programmation réseau avec les sockets, RMI.', 'Horstmann, Cay S., Cornell, Ga', 'Disponible', 'Livre couvrant des concepts avancés de la programmation avec l''édition standard de Java (Java-SE).', 858, NULL, 0),
-('2-7440-7090-4', 'UML 2 et les design patterns, 3e edition', 'Pearson education', 2005, 'UML, RUP, processus unifié, développement itératif et incrémental', 'Craig Larman', 'Disponible', 'Livre abordant l''analyse et la conception de système selon l''approche objet d''un point de vue mise en oeuvre. L''auteur nous fait partager son expérience pratique.', 655, NULL, 0),
-('2-7440-7312-1', 'Au coeur de Java, 8e édition', 'Pearson France', 2008, 'Programmation en Java, Swing, Programmation objets.', 'Horstmann, Cay S., Cornell, Ga', 'Disponible', 'Très bon livre d''introduction à Java mais pour des personnes ayant déjà programmé.', 928, NULL, 0),
-('2-89377-250-1', 'Analyse et conception de systèmes d''information', 'Reynald Goulet eds.', 2003, 'Analyse et conception de systèmes, Approche structurée, Approche objet, Gestion de projets.', 'Satzinger et al.', 'usagé', 'Analyse et conception de systèmes selon les approches structurée et objet. Rôle de l''analyste et gestion de projets.', 1000, 0, 0),
-('2895937591, ', 'Java Structuré', 'Groupe Modulo Incorp', 2007, 'Introduction à la programmation structurée, algorithmique, Java', 'Jo Ann Smith, Aicha Mebarek', 'Disponible', 'Initiation à la programmation structurée avec le langage Java.', 158, NULL, 0),
-('978-1-4302-2889-9', 'Begining Java EE 6 Platform with GlassFish 3', 'APress', 2010, 'Java, Web, JSF, GlassFish, Application d''entreprise, JPA, Persistence, Services web, Java-EE, JPA', 'Antonio Goncalves', 'Neuf', 'Développement avec Java-EE. Gestion de persistence avec JPA. Le framework JSF. Les services web.', 508, 0, 0),
-('9780132149181', 'Java Software Solutions: Foundations of Program Development, 7Ed', 'Addison-Wesley', 2011, 'programmation objet, java, initiation à la programmation', 'John Lewis, William Loftus', 'Disponible', 'Livre très pédagogique d''introduction à la programmation en Java.', 832, NULL, 0),
-('9781430239307', 'Pro Android 4', 'APress', 2012, 'Android, Java, Applications mobiles, Développement.', 'Satya Komatineni, Dave MacLean', 'Disponible', 'Développement d''applications en Java pour Android.', 991, 0, 0);
+('0-201-73733-7', 'Object-Oriented Software Development Using Java', 'Addison Wesley', 2003, 'Développement objet, programmation java, design patterns', 'Jia, Xiaoping', 'Disponible', 'Livre très pédagogique axé sur la conception d''application et l''exploitation des principaux patrons de conception.', 677, 0, 0),
+('2-7440-1962-3', 'Au coeur de Java 2, vol. 2 Fonctions avancées, JDK', 'CampusPress', 2005, 'Programmation multithread, accès aux bases de données avec JDBC, programmation réseau avec les sockets, RMI.', 'Horstmann, Cay S., Cornell, Ga', 'Disponible', 'Livre couvrant des concepts avancés de la programmation avec l''édition standard de Java (Java-SE).', 858, 0, 0),
+('2-7440-7090-4', 'UML 2 et les design patterns, 3e edition', 'Pearson education', 2005, 'UML, RUP, processus unifié, développement itératif et incrémental', 'Craig Larman', 'Disponible', 'Livre abordant l''analyse et la conception de système selon l''approche objet d''un point de vue mise en oeuvre. L''auteur nous fait partager son expérience pratique.', 655, 0, 0),
+('2-7440-7312-1', 'Au coeur de Java, 8e édition', 'Pearson France', 2008, 'Programmation en Java, Swing, Programmation objets.', 'Horstmann, Cay S., Cornell, Ga', 'Disponible', 'Très bon livre d''introduction à Java mais pour des personnes ayant déjà programmé.', 928, 0, 0),
+('2-89377-250-1', 'Analyse et conception de systèmes d''information', 'Reynald Goulet eds.', 2003, 'Analyse et conception de systèmes, Approche structurée, Approche objet, Gestion de projets.', 'Satzinger et al.', 'usagé', 'Analyse et conception de systèmes selon les approches structurée et objet. Rôle de l''analyste et gestion de projets.', 1000, 7, 0),
+('2895937591, ', 'Java Structuré', 'Groupe Modulo Incorp', 2007, 'Introduction à la programmation structurée, algorithmique, Java', 'Jo Ann Smith, Aicha Mebarek', 'Disponible', 'Initiation à la programmation structurée avec le langage Java.', 158, 0, 0),
+('978-1-4302-2889-9', 'Begining Java EE 6 Platform with GlassFish 3', 'APress', 2010, 'Java, Web, JSF, GlassFish, Application d''entreprise, JPA, Persistence, Services web, Java-EE, JPA', 'Antonio Goncalves', 'Neuf', 'Développement avec Java-EE. Gestion de persistence avec JPA. Le framework JSF. Les services web.', 508, 7.5, 0),
+('9780132149181', 'Java Software Solutions: Foundations of Program Development, 7Ed', 'Addison-Wesley', 2011, 'programmation objet, java, initiation à la programmation', 'John Lewis, William Loftus', 'Disponible', 'Livre très pédagogique d''introduction à la programmation en Java.', 832, 0, 0),
+('9781430239307', 'Pro Android 4', 'APress', 2012, 'Android, Java, Applications mobiles, Développement.', 'Satya Komatineni, Dave MacLean', 'Disponible', 'Développement d''applications en Java pour Android.', 991, 7, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -152,83 +152,86 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Contenu de la table `user`
 --
 
 INSERT INTO `user` (`username`, `nom_prenom`, `password`) VALUES
 ('adupont', 'Alain Dupont', 'dupont'),
 ('alapointe', 'Ali Lapointe', 'lapointe'),
+('alex', 'alex_caumartin', 'caumartin'),
 ('jmarois', 'Jean Marois', 'marois'),
+('moumene', 'abdelmoumene_toudeft', 'moumene'),
 ('pcharest', 'Pauline Charest', 'charest'),
+('samnang', 'samnang_suon', 'suon'),
 ('sduvet', 'Sylvie Duvet', 'duvet');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables exportées
 --
 
 --
--- Indexes for table `cours`
+-- Index pour la table `cours`
 --
 ALTER TABLE `cours`
  ADD PRIMARY KEY (`numero`);
 
 --
--- Indexes for table `evaluation`
+-- Index pour la table `evaluation`
 --
 ALTER TABLE `evaluation`
  ADD PRIMARY KEY (`id`), ADD KEY `evaluation_idProf_fk` (`idProf`), ADD KEY `evaluation_idLivre_fk` (`idLivre`);
 
 --
--- Indexes for table `evaluationcours`
+-- Index pour la table `evaluationcours`
 --
 ALTER TABLE `evaluationcours`
  ADD PRIMARY KEY (`id`), ADD KEY `evaluationcours_idLivre_fk` (`idLivre`), ADD KEY `evaluationcours_idProf_fk` (`idProf`), ADD KEY `evaluationcours_idCours_fk` (`idCours`);
 
 --
--- Indexes for table `exemplaire`
+-- Index pour la table `exemplaire`
 --
 ALTER TABLE `exemplaire`
  ADD PRIMARY KEY (`isbn`,`numero`), ADD KEY `exemplaire_isbn_fk` (`isbn`);
 
 --
--- Indexes for table `livre`
+-- Index pour la table `livre`
 --
 ALTER TABLE `livre`
  ADD PRIMARY KEY (`ISBN`), ADD KEY `NumAuteur` (`NomAuteur`);
 
 --
--- Indexes for table `user`
+-- Index pour la table `user`
 --
 ALTER TABLE `user`
  ADD PRIMARY KEY (`username`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables exportées
 --
 
 --
--- AUTO_INCREMENT for table `evaluation`
+-- AUTO_INCREMENT pour la table `evaluation`
 --
 ALTER TABLE `evaluation`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `evaluationcours`
+-- AUTO_INCREMENT pour la table `evaluationcours`
 --
 ALTER TABLE `evaluationcours`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables exportées
 --
 
 --
--- Constraints for table `evaluation`
+-- Contraintes pour la table `evaluation`
 --
 ALTER TABLE `evaluation`
 ADD CONSTRAINT `evaluation_ibfk_1` FOREIGN KEY (`idProf`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `evaluation_ibfk_2` FOREIGN KEY (`idLivre`) REFERENCES `livre` (`ISBN`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `evaluationcours`
+-- Contraintes pour la table `evaluationcours`
 --
 ALTER TABLE `evaluationcours`
 ADD CONSTRAINT `evaluationcours_ibfk_1` FOREIGN KEY (`idLivre`) REFERENCES `livre` (`ISBN`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -236,7 +239,7 @@ ADD CONSTRAINT `evaluationcours_ibfk_2` FOREIGN KEY (`idProf`) REFERENCES `user`
 ADD CONSTRAINT `evaluationcours_ibfk_3` FOREIGN KEY (`idCours`) REFERENCES `cours` (`numero`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `exemplaire`
+-- Contraintes pour la table `exemplaire`
 --
 ALTER TABLE `exemplaire`
 ADD CONSTRAINT `exemplaire_ibfk_1` FOREIGN KEY (`isbn`) REFERENCES `livre` (`ISBN`) ON DELETE CASCADE ON UPDATE CASCADE;

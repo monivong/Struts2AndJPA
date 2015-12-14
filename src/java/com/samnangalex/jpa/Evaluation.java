@@ -23,7 +23,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Evaluation.findAll", query = "SELECT e FROM Evaluation e"),
     @NamedQuery(name = "Evaluation.findById", query = "SELECT e FROM Evaluation e WHERE e.id = :id"),
-    @NamedQuery(name = "Evaluation.findByNote", query = "SELECT e FROM Evaluation e WHERE e.note = :note")})
+    @NamedQuery(name = "Evaluation.findByNote", query = "SELECT e FROM Evaluation e WHERE e.note = :note"),
+    @NamedQuery(name = "Evaluation.findByIdLivre", query = "SELECT e FROM Evaluation e WHERE e.idLivre = :idLivre")
+})
 public class Evaluation implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,7 +63,14 @@ public class Evaluation implements Serializable {
         this.note = note;
         this.commentaire = commentaire;
     }
-
+    
+    public Evaluation(Integer id, User idProf, Livre idLivre, short note, String commentaire) {
+        this.id = id;
+        this.idProf = idProf;
+        this.idLivre = idLivre;
+        this.note = note;
+        this.commentaire = commentaire;
+    }
     public Integer getId() {
         return id;
     }
