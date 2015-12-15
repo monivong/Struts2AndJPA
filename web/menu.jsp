@@ -9,24 +9,7 @@ a:hover {color : red;}
 </style>
 <s:actionmessage/>
 <s:if test="#session['connecte']">
-<ul id="menu">
-    <li>
-        <s:url id="url" action="ListBooks" />
-        <s:a href="%{url}">Liste des livres</s:a>
-    </li>
-    <li>
-        <s:url id="url" action="AddBook" />
-        <s:a href="%{url}">Ajouter un livre</s:a>
-    </li>
-    <li>
-        <s:url id="url" action="AddBookCopy" />
-        <s:a href="%{url}">Ajouter un exemplaire</s:a>
-    </li>
-    <li>
-        <s:url id="url" action="Logout" />
-        <s:a href="%{url}">Logout</s:a>
-    </li>
-</ul>
+    
 </s:if>
 <s:else>
 <ul>
