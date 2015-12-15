@@ -1,8 +1,6 @@
 package com.samnangalex.jpa;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -10,8 +8,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -20,39 +16,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Exemplaire.findAll", query = "SELECT e FROM Exemplaire e"),
     @NamedQuery(name = "Exemplaire.findByIsbn", query = "SELECT e FROM Exemplaire e WHERE e.exemplairePK.isbn = :isbn"),
-    @NamedQuery(name = "Exemplaire.findByNumero", query = "SELECT e FROM Exemplaire e WHERE e.exemplairePK.numero = :numero"),
-    @NamedQuery(name = "Exemplaire.findByProprietaire", query = "SELECT e FROM Exemplaire e WHERE e.proprietaire = :proprietaire"),
-    @NamedQuery(name = "Exemplaire.findByDetenteur", query = "SELECT e FROM Exemplaire e WHERE e.detenteur = :detenteur")})
+    @NamedQuery(name = "Exemplaire.findByNumero", query = "SELECT e FROM Exemplaire e WHERE e.exemplairePK.numero = :numero")})
 public class Exemplaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ExemplairePK exemplairePK;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "proprietaire")
-    private String proprietaire;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "detenteur")
-    private String detenteur;
     @JoinColumn(name = "isbn", referencedColumnName = "ISBN", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Livre livre;
+    @JoinColumn(name = "proprietaire", referencedColumnName = "username")
+    @ManyToOne(optional = false)
+    private User proprietaire;
+    @JoinColumn(name = "detenteur", referencedColumnName = "username")
+    @ManyToOne(optional = false)
+    private User detenteur;
 
     public Exemplaire() {
     }
 
     public Exemplaire(ExemplairePK exemplairePK) {
         this.exemplairePK = exemplairePK;
-    }
-
-    public Exemplaire(ExemplairePK exemplairePK, String proprietaire, String detenteur) {
-        this.exemplairePK = exemplairePK;
-        this.proprietaire = proprietaire;
-        this.detenteur = detenteur;
     }
 
     public Exemplaire(String isbn, short numero) {
@@ -67,28 +51,28 @@ public class Exemplaire implements Serializable {
         this.exemplairePK = exemplairePK;
     }
 
-    public String getProprietaire() {
-        return proprietaire;
-    }
-
-    public void setProprietaire(String proprietaire) {
-        this.proprietaire = proprietaire;
-    }
-
-    public String getDetenteur() {
-        return detenteur;
-    }
-
-    public void setDetenteur(String detenteur) {
-        this.detenteur = detenteur;
-    }
-
     public Livre getLivre() {
         return livre;
     }
 
     public void setLivre(Livre livre) {
         this.livre = livre;
+    }
+
+    public User getProprietaire() {
+        return proprietaire;
+    }
+
+    public void setProprietaire(User proprietaire) {
+        this.proprietaire = proprietaire;
+    }
+
+    public User getDetenteur() {
+        return detenteur;
+    }
+
+    public void setDetenteur(User detenteur) {
+        this.detenteur = detenteur;
     }
 
     @Override

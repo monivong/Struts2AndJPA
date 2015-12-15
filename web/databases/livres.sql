@@ -2,10 +2,10 @@
 -- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost
--- Généré le :  Lun 14 Décembre 2015 à 18:26
--- Version du serveur :  5.6.20-log
--- Version de PHP :  5.4.31
+-- Host: localhost
+-- Generation Time: Dec 15, 2015 at 06:00 AM
+-- Server version: 5.6.20-log
+-- PHP Version: 5.4.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `livres`
+-- Database: `livres`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `cours`
+-- Table structure for table `cours`
 --
 
 CREATE TABLE IF NOT EXISTS `cours` (
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `cours` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `cours`
+-- Dumping data for table `cours`
 --
 
 INSERT INTO `cours` (`numero`, `nom`, `duree`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `cours` (`numero`, `nom`, `duree`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `evaluation`
+-- Table structure for table `evaluation`
 --
 
 CREATE TABLE IF NOT EXISTS `evaluation` (
@@ -56,22 +56,23 @@ CREATE TABLE IF NOT EXISTS `evaluation` (
   `idLivre` varchar(20) NOT NULL,
   `note` tinyint(4) NOT NULL,
   `commentaire` text NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Contenu de la table `evaluation`
+-- Dumping data for table `evaluation`
 --
 
 INSERT INTO `evaluation` (`id`, `idProf`, `idLivre`, `note`, `commentaire`) VALUES
 (1, 'adupont', '978-1-4302-2889-9', 8, 'Très bon livre couvrant une bonne partie de la technologie Java-EE avec une étude assez approfondie de JPA. Le livre couvre aussi le framework JSF ainsi que les services web (SOAP et Restful).Le seul reproche que je peux lui faire est qu''il ne couvre pas les fondements de la programmation web (servlets et JSP).'),
 (2, 'sduvet', '978-1-4302-2889-9', 7, 'Assez bon livre sur la technologie Java-EE. La couverture de JSF et JPA est appréciée. Par contre, je regrette qu''il ne couvre pas des frameworks très populaires tels que Struts et Hibernate.'),
 (3, 'adupont', '2-89377-250-1', 7, 'Bon et gros livre couvrant beaucoup de sujets relatifs au développement de systèmes d''informations. On s''y perd un peu dans les nombreux sujets quelques fois antagonistes (exemple : approche structurée et approche objet).'),
-(4, 'alapointe', '9781430239307', 7, 'Très bon livre pour découvrir le développement d''applications Android avec Java.');
+(4, 'alapointe', '9781430239307', 7, 'Très bon livre pour découvrir le développement d''applications Android avec Java.'),
+(5, 'samnang', '978-1-4302-2889-9', 6, 'sexy');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `evaluationcours`
+-- Table structure for table `evaluationcours`
 --
 
 CREATE TABLE IF NOT EXISTS `evaluationcours` (
@@ -84,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `evaluationcours` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `evaluationcours`
+-- Dumping data for table `evaluationcours`
 --
 
 INSERT INTO `evaluationcours` (`id`, `idLivre`, `idProf`, `idCours`, `note`, `commentaire`) VALUES
@@ -94,7 +95,7 @@ INSERT INTO `evaluationcours` (`id`, `idLivre`, `idProf`, `idCours`, `note`, `co
 -- --------------------------------------------------------
 
 --
--- Structure de la table `exemplaire`
+-- Table structure for table `exemplaire`
 --
 
 CREATE TABLE IF NOT EXISTS `exemplaire` (
@@ -104,10 +105,18 @@ CREATE TABLE IF NOT EXISTS `exemplaire` (
   `detenteur` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `exemplaire`
+--
+
+INSERT INTO `exemplaire` (`isbn`, `numero`, `proprietaire`, `detenteur`) VALUES
+('0-201-73733-7', 1, 'adupont', 'moumene'),
+('0-201-73733-7', 2, 'moumene', 'samnang');
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `livre`
+-- Table structure for table `livre`
 --
 
 CREATE TABLE IF NOT EXISTS `livre` (
@@ -125,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `livre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Informations sur les livres';
 
 --
--- Contenu de la table `livre`
+-- Dumping data for table `livre`
 --
 
 INSERT INTO `livre` (`ISBN`, `Titre`, `Edition`, `Annee`, `MotsCles`, `NomAuteur`, `etat`, `Description`, `NbPages`, `note`, `nbEvaluations`) VALUES
@@ -142,7 +151,7 @@ INSERT INTO `livre` (`ISBN`, `Titre`, `Edition`, `Annee`, `MotsCles`, `NomAuteur
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -152,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`username`, `nom_prenom`, `password`) VALUES
@@ -166,72 +175,72 @@ INSERT INTO `user` (`username`, `nom_prenom`, `password`) VALUES
 ('sduvet', 'Sylvie Duvet', 'duvet');
 
 --
--- Index pour les tables exportées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `cours`
+-- Indexes for table `cours`
 --
 ALTER TABLE `cours`
  ADD PRIMARY KEY (`numero`);
 
 --
--- Index pour la table `evaluation`
+-- Indexes for table `evaluation`
 --
 ALTER TABLE `evaluation`
  ADD PRIMARY KEY (`id`), ADD KEY `evaluation_idProf_fk` (`idProf`), ADD KEY `evaluation_idLivre_fk` (`idLivre`);
 
 --
--- Index pour la table `evaluationcours`
+-- Indexes for table `evaluationcours`
 --
 ALTER TABLE `evaluationcours`
  ADD PRIMARY KEY (`id`), ADD KEY `evaluationcours_idLivre_fk` (`idLivre`), ADD KEY `evaluationcours_idProf_fk` (`idProf`), ADD KEY `evaluationcours_idCours_fk` (`idCours`);
 
 --
--- Index pour la table `exemplaire`
+-- Indexes for table `exemplaire`
 --
 ALTER TABLE `exemplaire`
- ADD PRIMARY KEY (`isbn`,`numero`), ADD KEY `exemplaire_isbn_fk` (`isbn`);
+ ADD PRIMARY KEY (`isbn`,`numero`), ADD KEY `exemplaire_isbn_fk` (`isbn`), ADD KEY `èxemplaire_proprietaire_fk` (`proprietaire`), ADD KEY `exemplaire_detenteur_fk` (`detenteur`);
 
 --
--- Index pour la table `livre`
+-- Indexes for table `livre`
 --
 ALTER TABLE `livre`
  ADD PRIMARY KEY (`ISBN`), ADD KEY `NumAuteur` (`NomAuteur`);
 
 --
--- Index pour la table `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
  ADD PRIMARY KEY (`username`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `evaluation`
+-- AUTO_INCREMENT for table `evaluation`
 --
 ALTER TABLE `evaluation`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT pour la table `evaluationcours`
+-- AUTO_INCREMENT for table `evaluationcours`
 --
 ALTER TABLE `evaluationcours`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- Contraintes pour les tables exportées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `evaluation`
+-- Constraints for table `evaluation`
 --
 ALTER TABLE `evaluation`
 ADD CONSTRAINT `evaluation_ibfk_1` FOREIGN KEY (`idProf`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `evaluation_ibfk_2` FOREIGN KEY (`idLivre`) REFERENCES `livre` (`ISBN`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `evaluationcours`
+-- Constraints for table `evaluationcours`
 --
 ALTER TABLE `evaluationcours`
 ADD CONSTRAINT `evaluationcours_ibfk_1` FOREIGN KEY (`idLivre`) REFERENCES `livre` (`ISBN`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -239,10 +248,12 @@ ADD CONSTRAINT `evaluationcours_ibfk_2` FOREIGN KEY (`idProf`) REFERENCES `user`
 ADD CONSTRAINT `evaluationcours_ibfk_3` FOREIGN KEY (`idCours`) REFERENCES `cours` (`numero`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `exemplaire`
+-- Constraints for table `exemplaire`
 --
 ALTER TABLE `exemplaire`
-ADD CONSTRAINT `exemplaire_ibfk_1` FOREIGN KEY (`isbn`) REFERENCES `livre` (`ISBN`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `exemplaire_ibfk_1` FOREIGN KEY (`isbn`) REFERENCES `livre` (`ISBN`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `exemplaire_ibfk_2` FOREIGN KEY (`proprietaire`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `exemplaire_ibfk_3` FOREIGN KEY (`detenteur`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

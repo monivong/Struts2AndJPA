@@ -38,8 +38,12 @@
         <action name="AddBookCopy" method="addBookCopy" class="com.atoudeft.actions.BookAction">
             <result>/addBookCopy.jsp</result>
         </action>
+        <action name="SubmitBookCopy" method="submitBookCopy" class="com.atoudeft.actions.BookAction">
+            <result name="success">/addBookCopy.jsp</result>
+            <result name="input">/addBookCopy.jsp</result>
+        </action>
         <action name="CommentBook" method="comment" class="com.atoudeft.actions.BookAction">
-            <result>/comments.jsp</result>
+            <result name="success">/comments.jsp</result>
             <result name="input">/comments.jsp</result>
         </action>
         <action name="AddBookEvaluation" method="addBookEvaluation" class="com.atoudeft.actions.BookAction">
@@ -48,7 +52,7 @@
         </action>
         <action name="SubmitEvaluation" method="submitEvaluation" class="com.atoudeft.actions.BookAction">
             <result name="success">/comments.jsp</result>
-            <result name="input">/comment.jsp</result>
+            <result name="input">/comments.jsp</result>
         </action>
     </package>
 

@@ -14,12 +14,11 @@
         <s:include value="menu.jsp"></s:include>	
         Ajoutez un exemplaire :
         <s:actionmessage/>
-        <s:form action="AddBookCopy">
-                  <s:textfield name="livre.isbn" label="ISBN" required="true" />
-                  <s:textfield name="livre.titre" label="Titre" />
-                  <s:textfield name="livre.auteur" label="Auteur" />
-                  <s:textfield name="livre.proprietaire" label="proprietaire" required="true"/>
-                  <s:submit value="Ajouter l'exemplaire"/>   	  
+        <s:form action="SubmitBookCopy">
+            <s:textfield name="monLivre.isbn" label="ISBN" required="true" />
+            <s:textfield name="monExemplaire.proprietaire.username" label="Propriétaire" />
+            <s:textfield name="monExemplaire.detenteur.username" label="Détenteur" required="true"/>
+            <s:submit value="Ajouter l'exemplaire"/>   	  
         </s:form>
     </body>
 </html>

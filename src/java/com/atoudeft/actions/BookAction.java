@@ -9,6 +9,8 @@ import com.atoudeft.dao.LivreDAO;
 import com.atoudeft.entites.Book;
 import com.opensymphony.xwork2.ActionSupport;
 import com.samnangalex.jpa.Evaluation;
+import com.samnangalex.jpa.Exemplaire;
+import com.samnangalex.jpa.ExemplairePK;
 import com.samnangalex.jpa.Livre;
 import com.samnangalex.jpa.User;
 import java.util.ArrayList;
@@ -28,8 +30,7 @@ public class BookAction extends ActionSupport implements SessionAware {
         private List<Livre> maListeDesLivres;    
         private Livre monLivre;    
         private List<Evaluation> maListeDesCommentaires;
-
-    
+        private Exemplaire monExemplaire;        
 	  
 	@Override
 	public void setSession(Map<String, Object> s) {
@@ -78,7 +79,29 @@ public class BookAction extends ActionSupport implements SessionAware {
             }
             return SUCCESS;
 	}
-        public String addBookCopy() {
+        public String addBookCopy() {            
+            return SUCCESS;
+        }
+        public String submitBookCopy() {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("Struts2AndJPAPU");
+            EntityManager em = emf.createEntityManager();
+            try {
+                em.getTransaction().begin();
+                ExemplairePK unExemplairePK = new ExemplairePK();
+                unExemplairePK.setIsbn( monLivre.getIsbn() );
+                unExemplairePK.setNumero((short)1);
+                Exemplaire unExemplaire = new Exemplaire();
+                unExemplaire.setExemplairePK( unExemplairePK );
+                unExemplaire.setProprietaire( monExemplaire.getProprietaire() );
+                unExemplaire.setDetenteur( monExemplaire.getDetenteur() );
+                em.persist( unExemplaire );
+                em.getTransaction().commit();
+            } catch(Exception e) {
+                em.getTransaction().rollback();
+                return INPUT;
+            } finally {
+              em.close();
+            }
             return SUCCESS;
         }
 	public String comment()
@@ -111,17 +134,22 @@ public class BookAction extends ActionSupport implements SessionAware {
             
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("Struts2AndJPAPU");
             EntityManager em = emf.createEntityManager();
-            em.getTransaction().begin();
-            Evaluation temp = new Evaluation();
-            temp.setIdProf( (User)this.session.get("idProf") );
-            temp.setIdLivre(monLivre);
-            temp.setNote( (short)this.uneNote );
-            temp.setCommentaire( this.unCommentaire );
-            System.out.println( temp );
-            em.persist( temp );
-            em.getTransaction().commit();
-            em.close();
-            
+            try {
+                em.getTransaction().begin();
+                Evaluation temp = new Evaluation();
+                temp.setIdProf( (User)this.session.get("idProf") );
+                temp.setIdLivre(monLivre);
+                temp.setNote( (short)this.uneNote );
+                temp.setCommentaire( this.unCommentaire );
+                System.out.println( temp );
+                em.persist( temp );
+                em.getTransaction().commit();
+            } catch(Exception e) {
+                em.getTransaction().rollback();
+                return INPUT;
+            } finally {                
+                em.close();               
+            }            
             return SUCCESS;
         }
         
@@ -131,7 +159,7 @@ public class BookAction extends ActionSupport implements SessionAware {
             if (!session.containsKey("connecte")) {
                 this.addActionError("Vous devez vous connecter pour accéder aux infos sur les livres");
             }
-            if(!( (this.uneNote >= 0) && (this.uneNote <= 10) ) ) {
+            if( (this.uneNote < 0) || (this.uneNote > 10) ) {
                 this.addFieldError("uneNote", "Erreur ! La note doit être compris entre 0 et 10.");
                 //Source de :  https://struts.apache.org/docs/form-validation.html
             }
@@ -189,5 +217,11 @@ public class BookAction extends ActionSupport implements SessionAware {
         }
         public void setMaListeDesCommentaires(List<Evaluation> maListeDesCommentaires) {
             this.maListeDesCommentaires = maListeDesCommentaires;
+        }
+        public Exemplaire getMonExemplaire() {
+            return monExemplaire;
+        }
+        public void setMonExemplaire(Exemplaire monExemplaire) {
+            this.monExemplaire = monExemplaire;
         }
 }

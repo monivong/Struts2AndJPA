@@ -47,6 +47,10 @@ public class User implements Serializable {
     private Collection<Evaluation> evaluationCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProf")
     private Collection<Evaluationcours> evaluationcoursCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proprietaire")
+    private Collection<Exemplaire> exemplaireCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "detenteur")
+    private Collection<Exemplaire> exemplaireCollection1;
 
     public User() {
     }
@@ -101,6 +105,24 @@ public class User implements Serializable {
 
     public void setEvaluationcoursCollection(Collection<Evaluationcours> evaluationcoursCollection) {
         this.evaluationcoursCollection = evaluationcoursCollection;
+    }
+
+    @XmlTransient
+    public Collection<Exemplaire> getExemplaireCollection() {
+        return exemplaireCollection;
+    }
+
+    public void setExemplaireCollection(Collection<Exemplaire> exemplaireCollection) {
+        this.exemplaireCollection = exemplaireCollection;
+    }
+
+    @XmlTransient
+    public Collection<Exemplaire> getExemplaireCollection1() {
+        return exemplaireCollection1;
+    }
+
+    public void setExemplaireCollection1(Collection<Exemplaire> exemplaireCollection1) {
+        this.exemplaireCollection1 = exemplaireCollection1;
     }
 
     @Override

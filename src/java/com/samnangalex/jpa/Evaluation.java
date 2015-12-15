@@ -63,14 +63,7 @@ public class Evaluation implements Serializable {
         this.note = note;
         this.commentaire = commentaire;
     }
-    
-    public Evaluation(Integer id, User idProf, Livre idLivre, short note, String commentaire) {
-        this.id = id;
-        this.idProf = idProf;
-        this.idLivre = idLivre;
-        this.note = note;
-        this.commentaire = commentaire;
-    }
+
     public Integer getId() {
         return id;
     }

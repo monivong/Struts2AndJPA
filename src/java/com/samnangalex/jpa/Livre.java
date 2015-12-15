@@ -70,9 +70,10 @@ public class Livre implements Serializable {
     @NotNull
     @Column(name = "NbPages")
     private int nbPages;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "note")
-    private Double note;
+    private double note;
     @Basic(optional = false)
     @NotNull
     @Column(name = "nbEvaluations")
@@ -91,11 +92,12 @@ public class Livre implements Serializable {
         this.isbn = isbn;
     }
 
-    public Livre(String isbn, String titre, String description, int nbPages, int nbEvaluations) {
+    public Livre(String isbn, String titre, String description, int nbPages, double note, int nbEvaluations) {
         this.isbn = isbn;
         this.titre = titre;
         this.description = description;
         this.nbPages = nbPages;
+        this.note = note;
         this.nbEvaluations = nbEvaluations;
     }
 
@@ -171,11 +173,11 @@ public class Livre implements Serializable {
         this.nbPages = nbPages;
     }
 
-    public Double getNote() {
+    public double getNote() {
         return note;
     }
 
-    public void setNote(Double note) {
+    public void setNote(double note) {
         this.note = note;
     }
 
