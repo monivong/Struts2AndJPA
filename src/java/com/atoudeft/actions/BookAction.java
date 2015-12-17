@@ -57,6 +57,7 @@ public class BookAction extends ActionSupport implements SessionAware {
 	}
 	public String add()
 	{
+            /*
             if (livre!=null)
             {
                 if( livre.getAuteur().matches(".*\\d+.*") ) {
@@ -78,6 +79,40 @@ public class BookAction extends ActionSupport implements SessionAware {
                 }
             }
             return SUCCESS;
+            */
+            if( this.monLivre != null ) {
+                if( monLivre.getNomAuteur().matches(".*\\d+.*") ) {
+                    this.addFieldError("monLivre.nomAuteur", "Erreur ! Le nom de l'auteur ne doit pas contenir de chiffres.");
+                    return INPUT;
+                } else {
+                    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Struts2AndJPAPU");
+                    EntityManager em = emf.createEntityManager();
+                    try {
+                        em.getTransaction().begin();
+                        Livre unLivre = new Livre();
+                        unLivre.setIsbn( this.monLivre.getIsbn() );
+                        unLivre.setTitre( this.monLivre.getTitre() );
+                        unLivre.setEdition( this.monLivre.getEdition() );
+                        unLivre.setAnnee( this.monLivre.getAnnee() );
+                        unLivre.setMotsCles( this.monLivre.getMotsCles() );
+                        unLivre.setNomAuteur( this.monLivre.getNomAuteur() );
+                        unLivre.setDescription( this.monLivre.getDescription() );
+                        unLivre.setNbPages( this.monLivre.getNbPages() );
+                        em.persist( unLivre );
+                        em.getTransaction().commit();
+                        this.addActionMessage("Livre ajoute avec succes.");
+                        return SUCCESS;
+                    } catch(Exception e) {
+                        em.getTransaction().rollback();
+                        this.addActionMessage("L'ISBN existe deja.");
+                        return INPUT;
+                    } finally {
+                        em.close();
+                    }
+                }
+            } else {
+                return INPUT;
+            }
 	}
         public String addBookCopy() {            
             return SUCCESS;
