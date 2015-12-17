@@ -37,27 +37,44 @@
         <s:include value="navbar.jsp" />
         <div class="container">
             <h3>MyBooKs manager</h3>
-            <s:include value="menu.jsp"></s:include>	
-            Ajoutez un nouveau livre :
-            <br /> <br />
-            <s:actionmessage/>
-            <s:form action="AddBook">
-                <s:textfield name="livre.isbn" placeholder="ISBN" class="form-control" required="true" />
-                <s:textfield name="livre.titre" placeholder="Titre" class="form-control" />
-                <s:textfield name="livre.auteur" placeholder="Auteur" class="form-control" /> 
-                <s:submit class="form-control" value="Ajouter"/>   	  
-            </s:form>
-            <s:form action="AddBook">
-                <s:textfield name="monLivre.isbn" placeholder="ISBN" class="form-control" required="true" />
-                <s:textfield name="monLivre.titre" placeholder="Titre" class="form-control" required="true" />
-                <s:textfield name="monLivre.edition" placeholder="Édition" class="form-control" required="true" />
-                <s:textfield name="monLivre.annee" placeholder="Année" class="form-control" required="true" />
-                <s:textfield name="monLivre.motsCles" placeholder="Mots-clés" class="form-control" required="true" />
-                <s:textfield name="monLivre.nomAuteur" placeholder="Auteur" class="form-control" required="true" /> 
-                <s:textfield name="monLivre.description" placeholder="Description" class="form-control" required="true" /> 
-                <s:textfield name="monLivre.nbPages" placeholder="Nombre de pages" class="form-control" required="true" /> 
-                <s:submit class="form-control" value="Ajouter le livre"/>   	  
-            </s:form>
+            <div class="row vertical-offset-100">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="panel panel-default">                    
+                        <div class="panel-heading">                                
+                            <div class="row-fluid user-row">
+                                <s:include value="menu.jsp"></s:include>	
+                                <h2>Ajoutez un nouveau livre</h2>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <s:actionmessage/>
+                                <!--<div class="col-sm-6">                            
+                                    <s:form action="AddBook"  cssClass="form-signin">
+                                        <s:textfield name="livre.isbn" placeholder="ISBN" class="form-control" required="true" />
+                                        <s:textfield name="livre.titre" placeholder="Titre" class="form-control" />
+                                        <s:textfield name="livre.auteur" placeholder="Auteur" class="form-control" /> 
+                                        <s:submit class="form-control" value="Ajouter"/>   	  
+                                    </s:form>
+                                </div>-->
+                                <div class="col-sm-12">
+                                    <s:form action="AddBook"  cssClass="form-signin">
+                                        <s:textfield name="monLivre.isbn" placeholder="ISBN" class="form-control" required="true" />
+                                        <s:textfield name="monLivre.titre" placeholder="Titre" class="form-control" required="true" />
+                                        <s:textfield name="monLivre.edition" placeholder="Édition" class="form-control" required="true" />
+                                        <s:textfield name="monLivre.annee" placeholder="Année" class="form-control" required="true" />
+                                        <s:textfield name="monLivre.motsCles" placeholder="Mots-clés" class="form-control" required="true" />
+                                        <s:textfield name="monLivre.nomAuteur" placeholder="Auteur" class="form-control" required="true" /> 
+                                        <s:textfield name="monLivre.description" placeholder="Description" class="form-control" required="true" /> 
+                                        <s:textfield name="monLivre.nbPages" placeholder="Nombre de pages" class="form-control" required="true" /> 
+                                        <s:submit class="form-control" value="Ajouter le livre"/>   	  
+                                    </s:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

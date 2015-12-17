@@ -8,6 +8,11 @@
     <head>
         <title>MyBooKs</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <!-- jQuery -->
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -43,44 +48,43 @@
                 <h3>Cette application vous permet d'effectuer un meilleur suivi des différents livres.</h3>
                 <p>Utilisez le menu pour accéder aux fonctionnalités.</p>
             </div>
-        </div>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
               <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
               <li data-target="#myCarousel" data-slide-to="1"></li>
               <li data-target="#myCarousel" data-slide-to="2"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
+              <li data-target="#myCarousel" data-slide-to="3"></li>
             </ol>
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
               <div class="item active">
-                <img src="http://i.imgur.com/E3AnvRt.jpg" alt="Bootstrap">
+                <img class="img-responsive" src="http://i.imgur.com/E3AnvRt.jpg" alt="Bootstrap">
                 <div class="carousel-caption">
-                  <h3>Bootstrap</h3>
-                  <p>Pour un site professionel !!</p>
+                  <h2>Bootstrap</h2>
+                  <p class="chrismastP">Pour un site professionel !!</p>
                 </div>
               </div>
               <div class="item">
-                  <img src="http://i.imgur.com/Gjy6fsT.jpg" alt="AngularJS" height="10">
+                  <img class="img-responsive" src="http://i.imgur.com/Gjy6fsT.jpg" alt="AngularJS">
                 <div class="carousel-caption">
-                  <h3>AngularJS</h3>
-                  <p>AJAX n'a jamais été aussi facile !!</p>
+                  <h2>AngularJS</h2>
+                  <p class="chrismastP">AJAX n'a jamais été aussi facile !!</p>
                 </div>
               </div>
               <div class="item">
-                <img src="http://i.imgur.com/QVAfhl5.jpg" height="20" alt="Struts 2">
+                <img class="img-responsive" src="http://i.imgur.com/QVAfhl5.jpg" alt="Struts 2">
                 <div class="carousel-caption">
-                  <h3>Struts 2</h3>
-                  <p>Un autre Framework à apprendre...</p>
+                  <h2>Struts 2</h2>
+                  <p class="chrismastP">Un autre Framework à apprendre...</p>
                 </div>
               </div>
                 <div class="item">
-                    <img src="http://i.imgur.com/B1f79pQ.jpg" alt="Java">
+                    <img class="img-responsive" src="http://i.imgur.com/B1f79pQ.jpg" alt="Java">
                     <div class="carousel-caption">
-                        <h3>Java</h3>
-                        <p>Le nouveau langage au-dessus du trône !!</p>
+                        <h2>Java</h2>
+                        <p class="chrismastP">Le nouveau langage au-dessus du trône !!</p>
                     </div>
                 </div>
             </div>
@@ -98,35 +102,27 @@
         <div class="container-fluid">
             <h1>Message des programmeurs</h1> 
             <div class="row">
-                <div class="span6">
-                    <div class="panel-heading panel-primary">Alex Caumartin</div>
-                    <div class="panel-body panel-success">Message d'Alex</div>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Alex Caumartin</div>
+                        <div class="panel-body">OK</div>
+                    </div>
                 </div>
-                <div class="span6">
-                    <div class="panel-heading panel-primary">Samnang Suon</div>
-                    <div class="panel-body panel-success">Je suis très fier de notre travail !!</div>
+                <div class="col-sm-4 col-sm-offset-2">
+                    <div class="panel panel-primary ">
+                        <div class="panel-heading panel-primary">Samnang Suon</div>
+                        <div class="panel-body panel-success">Je suis très fier de notre travail !!</div>
+                    </div>
                 </div>
             </div>
         </div>
+        </div>
+            
         <script>
             $(document).ready(function() {
                 $(".panel-body").css("background-color", "white!important"); 
                 $(".well").css("background-color", "#ffffcc").css("color", "black");
             });
-        </script>
-        <script type="text/css">
-            /*CSS*/
-            div.c-wrapper{
-                width: 80%; /* for example */
-                margin: auto;
-            }
-            .carousel-inner > .item > img, 
-            .carousel-inner > .item > a > img{
-                width: 100%; /* use this, or not */
-                margin: auto;
-            }
-            // source de : http://stackoverflow.com/questions/19582340/make-bootstraps-carousel-both-center-and-responsive
-                        
         </script>
     </body>
 </html>

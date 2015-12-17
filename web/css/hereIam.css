@@ -2,7 +2,30 @@ body {
     margin-top: 60px;
     background-image:url("http://i.imgur.com/Bg48QkL.jpg");
     background-size: 100%;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
+}
+h1,
+h2,
+h3,
+h4 {
+    font-family: Satisfy, cursive;
+    font-weight:normal;
+    color: black;
+   -webkit-text-fill-color: red; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.chrismastP {
+    font-size: 24px;
+    color: #50b239;
+   -webkit-text-fill-color: #50b239; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+}
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #50b239;
 }
 .form-signin input[type="text"] {
     margin-bottom: 5px;
@@ -25,7 +48,7 @@ body {
     box-sizing: border-box;
 }
 .vertical-offset-100 {
-    padding-top: 100px;
+    padding-top: 50px;
 }
 .img-responsive {
     display: block;
