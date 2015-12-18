@@ -11,22 +11,41 @@ h4 {
     font-family: Satisfy, cursive;
     font-weight:normal;
     color: black;
-   -webkit-text-fill-color: red; /* Will override color (regardless of order) */
+   -webkit-text-fill-color: #e8bd03; /* Will override color (regardless of order) */
    -webkit-text-stroke-width: 1px;
    -webkit-text-stroke-color: black;
     padding-top: 10px;
     padding-bottom: 10px;
 }
 .chrismastP {
-    font-size: 24px;
-    color: #50b239;
-   -webkit-text-fill-color: #50b239; /* Will override color (regardless of order) */
+    font-size: 40px;
+    color: #bc6acf;
+   -webkit-text-fill-color: #bc6acf; /* Will override color (regardless of order) */
    -webkit-text-stroke-width: 1px;
    -webkit-text-stroke-color: black;
 }
-.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
-   background-color: #50b239;
+.fixThatImg {
+    width:auto;
+    height: 300px;
+    max-height: 300px;
+    margin-left: 15%;
 }
+.pagination {
+    font-size: 32px;
+}
+.pagination li a:hover{
+    cursor: pointer;
+}
+.table > tbody > tr{
+   background-color: #e8bd03;
+}
+.table > tbody > tr > th{
+   background-color: #bc6acf;
+}
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: red;
+}
+
 .form-signin input[type="text"] {
     margin-bottom: 5px;
     border-bottom-left-radius: 0;
@@ -50,11 +69,14 @@ h4 {
 .vertical-offset-100 {
     padding-top: 50px;
 }
-.img-responsive {
+/*.img-responsive {
     display: block;
     max-width: 100%;
     height: auto;
     margin: auto;
+}*/
+input[type="submit"] {
+    background-color: #e8bd03;
 }
 .panel {
     margin-bottom: 20px;

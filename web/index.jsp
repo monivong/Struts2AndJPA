@@ -60,28 +60,28 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
               <div class="item active">
-                <img class="img-responsive" src="http://i.imgur.com/E3AnvRt.jpg" alt="Bootstrap">
+                <img class="img-responsive fixThatImg" src="http://i.imgur.com/E3AnvRt.jpg" alt="Bootstrap">
                 <div class="carousel-caption">
                   <h2>Bootstrap</h2>
                   <p class="chrismastP">Pour un site professionel !!</p>
                 </div>
               </div>
               <div class="item">
-                  <img class="img-responsive" src="http://i.imgur.com/Gjy6fsT.jpg" alt="AngularJS">
+                  <img class="img-responsive fixThatImg" src="http://i.imgur.com/Gjy6fsT.jpg" alt="AngularJS">
                 <div class="carousel-caption">
                   <h2>AngularJS</h2>
                   <p class="chrismastP">AJAX n'a jamais été aussi facile !!</p>
                 </div>
               </div>
               <div class="item">
-                <img class="img-responsive" src="http://i.imgur.com/QVAfhl5.jpg" alt="Struts 2">
+                <img class="img-responsive fixThatImg" src="http://i.imgur.com/QVAfhl5.jpg" alt="Struts 2">
                 <div class="carousel-caption">
                   <h2>Struts 2</h2>
                   <p class="chrismastP">Un autre Framework à apprendre...</p>
                 </div>
               </div>
                 <div class="item">
-                    <img class="img-responsive" src="http://i.imgur.com/B1f79pQ.jpg" alt="Java">
+                    <img class="img-responsive fixThatImg" src="http://i.imgur.com/B1f79pQ.jpg" alt="Java">
                     <div class="carousel-caption">
                         <h2>Java</h2>
                         <p class="chrismastP">Le nouveau langage au-dessus du trône !!</p>

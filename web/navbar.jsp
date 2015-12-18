@@ -54,4 +54,5 @@
         </ul>
       </div><!--/.nav-collapse -->
     </div>
+    <img src="http://i.imgur.com/77eUFed.png" class="img-responsive" style="position: absolute; height:35px; right:6%; top:8px; z-index: -1;" alt="Conxole Admin"/>
 </nav>

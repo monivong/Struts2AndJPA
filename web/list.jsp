@@ -36,30 +36,7 @@
     <body>
         <s:include value="navbar.jsp" />  
         <div class="container">
-            <h3>MyBooKs manager</h3>
-            <s:include value="menu.jsp"></s:include>	
-            <h4>Liste des livres</h4>
-            <table class="table table-striped">
-                 <tr>
-                     <th>ISBN</th>
-                     <th>Titre</th>
-                     <th>Auteur(s)</th>
-                 </tr>
-            <s:iterator value="bookList">
-                 <tr>
-                     <td><s:property value="isbn" /></td>
-                     <td><s:property value="titre" /></td>
-                     <td><s:property value="auteur" /></td>
-                     <td>
-                            <s:url id="url" action="CommentBook">
-                                <s:param name="livre.isbn"><s:property value="isbn" /></s:param>
-                            </s:url>
-                            <s:a href="%{url}">Commentaires</s:a>
-                     </td>
-                 </tr>
-            </s:iterator>
-            </table>
-            <table class="table table-striped table-hover table-bordered">
+            <table id="table" class="table table-hover table-bordered">
                 <tr>
                     <th>ISBN</th>
                     <th>Titre</th>
@@ -73,7 +50,7 @@
                     <th>Note</th>
                 </tr>
                 <s:iterator value="maListeDesLivres">
-                    <tr>
+                    <tr class="livre">
                         <td><s:property value="isbn" /></td>
                         <td><s:property value="titre" /></td>
                         <td><s:property value="edition" /></td>
@@ -89,13 +66,50 @@
                                 <s:param name="monLivre.isbn"><s:property value="isbn" /></s:param>
                                 <s:param name="monLivre.titre"><s:property value="titre" /></s:param>
                             </s:url>
-                            <s:a href="%{url}">Évaluer</s:a>
+                            <s:a href="%{url}"><i class="fa fa-pencil-square"></i></s:a>
                         </td>
                     </tr>
                 </s:iterator>     
             </table>
+            <div style="text-align: center;">
+                <ul class="pagination"></ul>
+            </div>
             <s:url id="url" action="AddBook" />
             <s:a href="%{url}">Ajouter un livre</s:a>  
         </div>
     </body>
+    <script>        
+        $("document").ready(function() {
+            var nombreDeLivres = $(".livre").length;
+            $(".livre:lt("+nombreDeLivres+")").hide();
+            showBooks(1);
+            //$("#myPagination").append("<ul class=\"pagination\">");
+            var nombreDeLivresParPage = nombreDeLivres/5;
+            for (i=1; i<nombreDeLivresParPage+1; i++)
+            {
+                $(".pagination").append("<li><a href=\"#table\" onclick=\"showBooks("+i+")\"\">"+i+"</a></li>");
+            }
+            $('a[href*=#]:not([href=#])').click(function() {
+                if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+                  var target = $(this.hash);
+                  target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                  if (target.length) {
+                    $('html,body').animate({
+                      scrollTop: target.offset().top
+                    }, 500);
+                    return false;
+                  }
+                }
+              });
+        });    
+        function showBooks(i) {
+            $(".livre").hide();
+            var show = i*5 ;
+            $(".livre:lt("+show+")").show();
+            if (i > 1){
+                var hide = show - 5;
+                $(".livre:lt("+hide+")").hide();
+            }
+        }
+    </script>
 </html>

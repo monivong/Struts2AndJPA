@@ -36,26 +36,8 @@
 
 <body>
 <s:include value="navbar.jsp" />
-<div class="container">
-<h3>MyBooKs manager</h3>
-    <s:include value="menu.jsp"></s:include>	
-    <h4>Commentaires du livre <s:property value="livre.isbn" />[<s:property value="livre.titre" />] </h4>
-    <ul>
-            <s:iterator value="commentaires">
-                <li><s:property /></li>
-            </s:iterator>
-    </ul>
-    Ajouter une évaluation :
-    <s:form action="CommentBook">
-        <s:textfield name="uneNote" placeholder="Note" class="form-control" value="" required="true" />
-        <s:textfield name="unCommentaire" placeholder="Commentaire" class="form-control" required="true" />          
-        <s:hidden name="livre.isbn" />
-        <s:submit class="form-control" value="Go"/>   	  
-    </s:form>
-    
-    <hr />
-    
-    <h4>Commentaires du livre <s:property value="monLivre.isbn" />[<s:property value="monLivre.titre" />] </h4>
+<div class="container"> 
+    <h2 style="font-size: 36px; ">Commentaires du livre <s:property value="monLivre.isbn" />[<s:property value="monLivre.titre" />] </h2>
     <table class="table table-bordered">
         <tr>
             <th>Note</th>
@@ -68,13 +50,21 @@
             </tr>
 	</s:iterator>
     </table>
-    Ajouter une évaluation :
-    <s:form action="SubmitEvaluation">
-        <s:textfield name="uneNote" placeholder="Note" class="form-control" value="" required="true" />
-        <s:textfield name="unCommentaire" placeholder="Commentaire" class="form-control" required="true" />          
-        <s:hidden name="monLivre.isbn" />
-        <s:submit class="form-control" value="Soumettre évaluation"/>   	  
-    </s:form>
+    <div class="col-md-4">
+    <div class="panel panel-default">                    
+        <div class="panel-heading">          
+            <h3>Ajouter une évaluation :</h3>
+        </div>
+        <div class="panel-body">
+            <s:form action="SubmitEvaluation">
+                <s:textfield name="uneNote" placeholder="Note" class="form-control" value="" required="true" />
+                <s:textfield name="unCommentaire" placeholder="Commentaire" class="form-control" required="true" />          
+                <s:hidden name="monLivre.isbn" />
+                <s:submit class="form-control" value="Soumettre évaluation"/>   	  
+            </s:form>
+        </div>
+    </div>
+    </div>
 </div>
 </body>
 </html>
