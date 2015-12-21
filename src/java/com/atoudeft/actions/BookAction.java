@@ -18,6 +18,7 @@ import com.samnangalex.jpa.User;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ListIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -148,15 +149,22 @@ public class BookAction extends ActionSupport implements SessionAware {
             EntityManager em = emf.createEntityManager();
             try {
                 em.getTransaction().begin();
+                // Chercher le plus grand id selon l'ISBN donné
+                Query requete = em.createNamedQuery("Exemplaire.findMaxIdByIsbn");
+                requete.setParameter("isbn", this.monLivre.getIsbn() );
+                List maxId = requete.getResultList();                
+                int nouveauId = Integer.parseInt( maxId.listIterator().next().toString() );
+                
                 ExemplairePK unExemplairePK = new ExemplairePK();
-                unExemplairePK.setIsbn( monLivre.getIsbn() );
-                unExemplairePK.setNumero((short)1);
+                unExemplairePK.setIsbn( monLivre.getIsbn() );                
+                unExemplairePK.setNumero( (short)++nouveauId );
                 Exemplaire unExemplaire = new Exemplaire();
                 unExemplaire.setExemplairePK( unExemplairePK );
                 unExemplaire.setProprietaire( monExemplaire.getProprietaire() );
                 unExemplaire.setDetenteur( monExemplaire.getDetenteur() );
                 em.persist( unExemplaire );
                 em.getTransaction().commit();
+                this.addActionMessage("BRAVO ! Votre exemplaire a bien été ajouté.");
             } catch(Exception e) {
                 em.getTransaction().rollback();
                 return INPUT;

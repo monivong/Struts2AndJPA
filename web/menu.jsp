@@ -7,7 +7,9 @@ ul a {text-decoration:none;color : white;}
 a:hover {color : red;}
 -->
 </style>
-<s:actionmessage/>
+<div class="alert alert-warning">
+    <s:actionmessage />
+</div> 
 <s:if test="#session['connecte']">
     
 </s:if>

@@ -42,14 +42,13 @@
                 <div class="col-md-4 col-md-offset-4">
                     <div class="panel panel-default">                    
                         <div class="panel-heading">                                
-                            <div class="row-fluid user-row">
+                            <div class="row-fluid user-row">                                
                                 <h2>Ajoutez un exemplaire</h2>
                             </div>
                         </div>
                         <div class="panel-body">
                             <s:include value="menu.jsp"></s:include>	
 
-                            <s:actionmessage/>
                             <s:form action="SubmitBookCopy" cssClass="form-signin">
                                 <s:textfield name="monLivre.isbn" placeholder="ISBN" required="true" class="form-control" />
                                 <s:textfield name="monExemplaire.proprietaire.username" placeholder="Propriétaire" class="form-control" />

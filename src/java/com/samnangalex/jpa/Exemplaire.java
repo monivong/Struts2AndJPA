@@ -16,7 +16,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Exemplaire.findAll", query = "SELECT e FROM Exemplaire e"),
     @NamedQuery(name = "Exemplaire.findByIsbn", query = "SELECT e FROM Exemplaire e WHERE e.exemplairePK.isbn = :isbn"),
-    @NamedQuery(name = "Exemplaire.findByNumero", query = "SELECT e FROM Exemplaire e WHERE e.exemplairePK.numero = :numero")})
+    @NamedQuery(name = "Exemplaire.findByNumero", query = "SELECT e FROM Exemplaire e WHERE e.exemplairePK.numero = :numero"),
+    @NamedQuery(name = "Exemplaire.findMaxIdByIsbn", query = "SELECT max(e.exemplairePK.numero) FROM Exemplaire e WHERE e.exemplairePK.isbn = :isbn")
+})
 public class Exemplaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
