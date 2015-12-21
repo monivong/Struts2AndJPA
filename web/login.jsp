@@ -41,7 +41,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">                                
                         <div class="row-fluid user-row">
-                            <img src="http://i.imgur.com/77eUFed.png" class="img-responsive" style="height:20%;" alt="Conxole Admin"/>
+                            <img src="http://i.imgur.com/77eUFed.png" class="img-responsive" style="height:20%;margin:auto;" alt="Conxole Admin"/>
                         </div>
                     </div>
                     <div class="panel-body">

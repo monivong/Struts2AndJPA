@@ -7,13 +7,19 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.atoudeft.dao.LivreDAO;
 import com.atoudeft.entites.Book;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 import com.opensymphony.xwork2.ActionSupport;
 import com.samnangalex.jpa.Evaluation;
 import com.samnangalex.jpa.Exemplaire;
 import com.samnangalex.jpa.ExemplairePK;
 import com.samnangalex.jpa.Livre;
 import com.samnangalex.jpa.User;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -40,16 +46,36 @@ public class BookAction extends ActionSupport implements SessionAware {
 
 	public String list()
 	{
-     //   if (!session.containsKey("connecte"))
-     //   	return INPUT;
-            bookList = LivreDAO.getBookList();                
+            
+                //   if (!session.containsKey("connecte"))
+                //   	return INPUT;
+                //bookList = LivreDAO.getBookList();
+                
+                //Mise à jour de la colonne Note de la table Livre à l'aide du DAO
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                java.sql.Connection cnx = null;
+                cnx = DriverManager.getConnection("jdbc:mysql://localhost/livres?user=root&password=root");
+                java.sql.Statement stm = null;
+                stm = cnx.createStatement();
+                stm.execute("UPDATE livre SET note = (SELECT AVG(note) FROM evaluation WHERE livre.ISBN = evaluation.idLivre)");
+            } catch(SQLException e) {
+                
+            } catch(Exception ex) {
+                
+            }
+            /* source de : 
+                http://www.tutorialspoint.com/jdbc/jdbc-update-records.htm
+                http://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html */
             
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("Struts2AndJPAPU");
             EntityManager em = emf.createEntityManager();
             /*
             Query requete = em.createNativeQuery("UPDATE livre SET livre.note = (SELECT AVG(evaluation.note) FROM evaluation WHERE evaluation.idLivre = livre.isbn)");
             int nbrLignesAffectees = requete.executeUpdate();
+            // source de : http://www.objectdb.com/java/jpa/query/jpql/update
             */
+            
             Query requete = em.createNamedQuery("Livre.findAll");            
             maListeDesLivres = requete.getResultList();
             
