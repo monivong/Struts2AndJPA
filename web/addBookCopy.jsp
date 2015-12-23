@@ -51,7 +51,7 @@
 
                             <s:form action="SubmitBookCopy" cssClass="form-signin">
                                 <s:textfield name="monLivre.isbn" placeholder="ISBN" required="true" class="form-control" />
-                                <s:textfield name="monExemplaire.proprietaire.username" placeholder="Propriétaire" class="form-control" />
+                                <s:textfield name="monExemplaire.proprietaire.username" placeholder="Propriétaire" class="form-control" required="true"/>
                                 <s:textfield name="monExemplaire.detenteur.username" placeholder="Détenteur" class="form-control" required="true"/>
                                 <s:submit class="form-control" value="Ajouter l'exemplaire"/>   	  
                             </s:form>
